@@ -2,7 +2,7 @@
 
 ## VPS
 
-You will need a server which is online most of the time (more than 6 hours every day is good, 24/7 is best). You can buy cheap(-ish) servers online at places like Digital Ocean, Linode or UpCloud. [Best VPS under $5](https://www.vpsbenchmarks.com/best_vps/2020/under/5).
+You will need a server which is online most of the time (more than 6 hours every day is good, 24/7 is best). You can buy cheap(-ish) servers online at places like Digital Ocean, Linode or UpCloud. [Best VPS under $10](https://www.vpsbenchmarks.com/best_vps/2020/under/10).
 
 **Minimum requirements:**
 - 2GB RAM

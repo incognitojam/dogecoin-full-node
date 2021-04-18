@@ -40,12 +40,15 @@ sudo install -m 0755 -o root -g root -t /usr/bin dogecoin-1.14.3/bin/*
 ### Configuring dogecoind
 
 ```sh
-mkdir -p /etc/dogecoin
+# Download the template dogecoin.conf
+wget https://raw.githubusercontent.com/incognitojam/dogecoin-full-node/main/dogecoin.conf
 
-# Set a username and random password for RPC
-echo rpcuser=dogecoinrpc > /etc/dogecoin/dogecoin.conf
-dogepw=`cat /dev/urandom | tr -dc 'a-zA-Z0-9' | head -c 32`
-echo rpcpassword=$dogepw >> /etc/dogecoin/dogecoin.conf
+# Set a long random password for RPC
+dogepw=`cat /dev/urandom | tr -dc 'a-zA-Z0-9' | head -c 64`
+echo rpcpassword=$dogepw >> dogecoin.conf
+
+mkdir -p /etc/dogecoin
+mv dogecoin.conf /etc/dogecoin
 ```
 
 ### Downloading blockchain
@@ -56,7 +59,7 @@ This will take a while, depending on your connection speed and the number of see
 # Download the torrent
 # TODO: update this link to the more recent bootstrap
 cd ~/
-aria2c "magnet:?xt=urn:btih:fd425a8feffac887701eeb8059172589efb3369d&dn=dogecoin-blockchain-2021-01-03&tr=udp%3a%2f%2ftracker.openbittorrent.com%3a80%2fannounce"
+aria2c --seed-ratio=0.1 "magnet:?xt=urn:btih:fd425a8feffac887701eeb8059172589efb3369d&dn=dogecoin-blockchain-2021-01-03&tr=udp%3a%2f%2ftracker.openbittorrent.com%3a80%2fannounce"
 
 # Make a cup of coffee ☕
 

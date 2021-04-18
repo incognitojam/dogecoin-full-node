@@ -72,6 +72,7 @@ rm -r dogecoin-blockchain-2021-01-03
 sudo useradd -r -s /bin/false dogecoin
 
 # Add the systemd service and enable it to start at boot
+wget https://raw.githubusercontent.com/incognitojam/dogecoin-full-node/main/dogecoind.service
 sudo cp dogecoind.service /etc/systemd/system/dogecoind.service
 sudo chmod 644 /etc/systemd/system/dogecoind.service
 sudo systemctl enable dogecoind

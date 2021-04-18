@@ -59,7 +59,7 @@ This will take a while, depending on your connection speed and the number of see
 # Download the torrent
 # TODO: update this link to the more recent bootstrap
 cd ~/
-aria2c --seed-ratio=0.1 "magnet:?xt=urn:btih:fd425a8feffac887701eeb8059172589efb3369d&dn=dogecoin-blockchain-2021-01-03&tr=udp%3a%2f%2ftracker.openbittorrent.com%3a80%2fannounce"
+aria2c "magnet:?xt=urn:btih:fd425a8feffac887701eeb8059172589efb3369d&dn=dogecoin-blockchain-2021-01-03&tr=udp%3a%2f%2ftracker.openbittorrent.com%3a80%2fannounce"
 
 # Make a cup of coffee ☕
 

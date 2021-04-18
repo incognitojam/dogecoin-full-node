@@ -9,7 +9,6 @@ After=network.target
 
 [Service]
 ExecStart=/usr/bin/dogecoind -daemon \
-                            -uacomment=DoOnlyGoodEveryday \
                             -pid=/run/dogecoind/dogecoind.pid \
                             -conf=/etc/dogecoin/dogecoin.conf \
                             -datadir=/var/lib/dogecoind

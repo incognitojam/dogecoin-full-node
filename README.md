@@ -39,6 +39,8 @@ sudo install -m 0755 -o root -g root -t /usr/bin dogecoin-1.14.3/bin/*
 
 ### Configuring dogecoind
 
+Here we download the template `dogecoin.conf`, set a secure rpcpassword and then move it to the configuration directory. Take a look inside dogecoin.conf to see the possible configuration options. I've already set some sane defaults.
+
 ```sh
 # Download the template dogecoin.conf
 wget https://raw.githubusercontent.com/incognitojam/dogecoin-full-node/main/dogecoin.conf
@@ -53,20 +55,19 @@ mv dogecoin.conf /etc/dogecoin
 
 ### Downloading blockchain
 
-This will take a while, depending on your connection speed and the number of seeders of the torrent.
+This will take a while, depending on your connection speed and the number of seeders of the torrent. This torrent is a "bootstrap" for the blockchain, a copy of all the blocks you can use instead of getting them from the network (torrent is faster than the dogecoin core software right now).
 
 ```sh
 # Download the torrent
-# TODO: update this link to the more recent bootstrap
 cd ~/
-aria2c "magnet:?xt=urn:btih:fd425a8feffac887701eeb8059172589efb3369d&dn=dogecoin-blockchain-2021-01-03&tr=udp%3a%2f%2ftracker.openbittorrent.com%3a80%2fannounce"
+aria2c "magnet:?xt=urn:btih:d7a6e8b70bf50121ecf119be87684620ebd31198&dn=dogecoin-bootstrap-2021-04-11&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.publicbt.com%3A80"
 
 # Make a cup of coffee ☕
 
 # Move the downloaded files to the correct location
 mkdir -p /var/lib/dogecoind
-mv dogecoin-blockchain-2021-01-03/* /var/lib/dogecoind
-rm -r dogecoin-blockchain-2021-01-03
+mv dogecoin-bootstrap-2021-04-11/bootstrap.dat /var/lib/dogecoind
+rm -r dogecoin-bootstrap-2021-04-11
 ```
 
 ### Creating a "dogecoin" user and systemd service

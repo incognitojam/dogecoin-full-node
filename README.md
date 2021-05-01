@@ -91,7 +91,7 @@ sudo systemctl status dogecoind
 
 You can use `dogecoin-cli` to interact with the Dogecoin daemon. Make sure to provide the path to your config file.
 
-`getinfo` is a useful RPC command to get the current status.
+`getinfo` is a useful RPC command to get the current status. You can use it to monitor the current number of connections and the block height. The `"blocks"` will increase as the bootstrap is processed until it catches up with the network. You can check the current network block height at [dogechain.info](https://dogechain.info/).
 
 ```sh
 # Run getinfo

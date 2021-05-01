@@ -86,3 +86,17 @@ sudo systemctl enable dogecoind
 sudo systemctl start dogecoind
 sudo systemctl status dogecoind
 ```
+
+### Interacting with dogecoind
+
+You can use `dogecoin-cli` to interact with the Dogecoin daemon. Make sure to provide the path to your config file.
+
+`getinfo` is a useful RPC command to get the current status.
+
+```sh
+# Run getinfo
+dogecoin-cli -conf=/etc/dogecoin/dogecoin.conf getinfo
+
+# Manually addnode
+dogecoin-cli -conf=/etc/dogecoin/dogecoin.conf addnode core0-eu.dogecoin.gg add
+```

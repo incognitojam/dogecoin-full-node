@@ -12,7 +12,7 @@ Dogecoin Core is the official dogecoin wallet implementation and already operate
     + [Downloading dogecoind ⬇️](#downloading-dogecoind-%EF%B8%8F)
     + [Configuring dogecoind 🔧](#configuring-dogecoind-)
         - Restricting bandwidth use with `maxuploadtarget`
-    + [Downloading blockchain ⬇️](#downloading-blockchain-%EF%B8%8F)
+    + [Downloading the blockchain ⬇️](#downloading-the-blockchain-%EF%B8%8F)
     + [Creating a "dogecoin" user and systemd service 🔁](#creating-a-dogecoin-user-and-systemd-service-)
 * [Interacting with `dogecoind` 🔎](#interacting-with-dogecoind-)
     + [Using `dogecoin-cli` 💻](#using-dogecoin-cli-)
@@ -118,7 +118,7 @@ sudo nano /etc/dogecoin/dogecoin.conf
 
 (Note: to save and exit `nano` press `CTRL+X` and then type `y` and hit `Enter` to confirm)
 
-### Downloading blockchain ⬇️
+### Downloading the blockchain ⬇️
 
 This torrent is a "bootstrap" for the blockchain, a copy of all the blocks you can use instead of getting them from the network (torrent is faster than the dogecoin core software right now).
 

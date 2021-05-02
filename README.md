@@ -45,7 +45,6 @@ We will get the latest Dogecoin Core binaries (1.14.3) and install them.
 
 ```sh
 # Download and extract dogecoin binaries (including dogecoind)
-cd ~
 wget "https://github.com/dogecoin/dogecoin/releases/download/v1.14.3/dogecoin-1.14.3-x86_64-linux-gnu.tar.gz" -O dogecoin.tar.gz
 tar -zxvvf dogecoin.tar.gz
 rm dogecoin.tar.gz
@@ -101,7 +100,7 @@ This torrent is a "bootstrap" for the blockchain, a copy of all the blocks you c
 This step will take a while, depending on your connection speed and the number of seeders of the torrent. 
 
 ```sh
-aria2c "magnet:?xt=urn:btih:d7a6e8b70bf50121ecf119be87684620ebd31198&dn=dogecoin-bootstrap-2021-04-11&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.publicbt.com%3A80"
+aria2c --seed-time=0 "magnet:?xt=urn:btih:d7a6e8b70bf50121ecf119be87684620ebd31198&dn=dogecoin-bootstrap-2021-04-11&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.publicbt.com%3A80"
 ```
 
 Go and make a cup of coffee! ☕

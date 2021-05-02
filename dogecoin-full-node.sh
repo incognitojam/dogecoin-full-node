@@ -40,7 +40,7 @@ install_linux() {
     set_os
         case $OS in
             debian )  install_debian ;;
-            * )       say_err "OS $OS unsupported." ;;
+            * )       err "OS $OS unsupported." ;;
         esac
 }
 
@@ -102,7 +102,7 @@ install_debian() {
     local _retval=$?
     if [ $_retval != 0 ]; then
         # TODO: handle
-        say_err "dogecoind is not running!"
+        err "warning! dogecoind service is not running!"
         # journalctl -u dogecoind -b --no-pager
     fi
 }
@@ -113,16 +113,17 @@ install() {
     if [ "$unamestr" = 'Linux' ]; then
         install_linux "$@"
     else
-        say "OS $unamestr unsupported."
-        exit 1
+        err "OS $unamestr unsupported."
     fi
+
+    say "dogecoind is now running"
 
     # TODO: monitor bootstrap indexing (check block height higher than 3684000)
 
-    say "Run the following command to get dogecoind state"
+    say "run the following command to get dogecoind status:"
     echo "dogecoin-cli -conf=/etc/dogecoin/dogecoin.conf getinfo"
     echo ""
-    echo "Thanks for running a full node!"
+    say "thanks for running a full node!"
 }
 
 # Copyright 2016 The Rust Project Developers. See the COPYRIGHT

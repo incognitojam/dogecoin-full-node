@@ -81,7 +81,7 @@ If you want to change the configuration later, simply edit the configuration fil
 You can reduce the network upload usage by setting a target for Dogecoin Core. This will limit the amount of data served each day.
 
 ```
-nano /etc/dogecoin/dogecoin.conf
+sudo nano /etc/dogecoin/dogecoin.conf
 ```
 
 ```conf
@@ -92,19 +92,27 @@ nano /etc/dogecoin/dogecoin.conf
 # maxuploadtarget=100000
 ```
 
+(Note: to save and exit `nano` press `CTRL+X` and then type `y` and hit `Enter` to confirm)
+
 ### Downloading blockchain ⬇️
 
-This will take a while, depending on your connection speed and the number of seeders of the torrent. This torrent is a "bootstrap" for the blockchain, a copy of all the blocks you can use instead of getting them from the network (torrent is faster than the dogecoin core software right now).
+This torrent is a "bootstrap" for the blockchain, a copy of all the blocks you can use instead of getting them from the network (torrent is faster than the dogecoin core software right now).
+
+This step will take a while, depending on your connection speed and the number of seeders of the torrent. 
 
 ```sh
-# Download the torrent
-cd ~/
 aria2c "magnet:?xt=urn:btih:d7a6e8b70bf50121ecf119be87684620ebd31198&dn=dogecoin-bootstrap-2021-04-11&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.publicbt.com%3A80"
+```
 
-# Make a cup of coffee ☕
+Go and make a cup of coffee! ☕
 
-# Move the downloaded files to the correct location
+When it's done, you can move the `bootstrap.dat` to the Dogecoin Data directory.
+
+```
+# Create the data directory for dogecoind
 mkdir -p /var/lib/dogecoind
+
+# Move the bootstrap to the correct location and then delete the torrent folder
 mv dogecoin-bootstrap-2021-04-11/bootstrap.dat /var/lib/dogecoind
 rm -r dogecoin-bootstrap-2021-04-11
 ```

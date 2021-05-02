@@ -2,6 +2,19 @@
 
 Dogecoin Core is the official dogecoin wallet implementation and already operates as a full node by serving data to others. It's essential that volunteers operate full nodes otherwise the network would not function! If you already have Dogecoin Core on your computer, keeping it open for as many hours in the day as possible is already helping. However, you can go a step further by configuring a full node on a computer which operates 24/7 with unrestricted bandwidth.
 
+* [VPS ☁️](#vps-%EF%B8%8F)
+    + [Server requirements](#server-requirements)
+* [Installation](#installation)
+    + [Automatic Installer (experimental!) ✨](#automatic-installer-experimental-)
+    + [Preparation 📚](#preparation-)
+    + [Downloading dogecoind ⬇️](#downloading-dogecoind-%EF%B8%8F)
+    + [Configuring dogecoind 🔧](#configuring-dogecoind-)
+        - Restricting bandwidth use with `maxuploadtarget`
+    + [Downloading blockchain ⬇️](#downloading-blockchain-%EF%B8%8F)
+    + [Creating a "dogecoin" user and systemd service 🔁](#creating-a-dogecoin-user-and-systemd-service-)
+    + [Interacting with `dogecoind` 🔎](#interacting-with-dogecoind-)
+    + [Using `dogecoin-cli` 💻](#using-dogecoin-cli-)
+
 ## VPS ☁️
 
 You can buy cheap(-ish) servers online at places like Digital Ocean, Linode or UpCloud. [Best VPS under $10](https://www.vpsbenchmarks.com/best_vps/2020/under/10).
@@ -139,7 +152,7 @@ sudo chmod 644 /etc/systemd/system/dogecoind.service
 sudo systemctl enable dogecoind
 ```
 
-### Interacting with dogecoind 🔎
+## Interacting with `dogecoind` 🔎
 
 Now that the service is created you can start it!
 
@@ -149,6 +162,8 @@ sudo systemctl start dogecoind
 # Check the status
 sudo systemctl status dogecoind
 ```
+
+### Using `dogecoin-cli` 💻
 
 You can use `dogecoin-cli` to interact with the Dogecoin daemon. Make sure to provide the path to your config file so that it knows your rpcuser/password.
 

@@ -14,7 +14,7 @@ Dogecoin Core is the official dogecoin wallet implementation and already operate
         - Restricting bandwidth use with `maxuploadtarget`
     + [Downloading blockchain ⬇️](#downloading-blockchain-%EF%B8%8F)
     + [Creating a "dogecoin" user and systemd service 🔁](#creating-a-dogecoin-user-and-systemd-service-)
-    + [Interacting with `dogecoind` 🔎](#interacting-with-dogecoind-)
+* [Interacting with `dogecoind` 🔎](#interacting-with-dogecoind-)
     + [Using `dogecoin-cli` 💻](#using-dogecoin-cli-)
 
 ## VPS ☁️

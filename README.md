@@ -141,13 +141,6 @@ sudo systemctl start dogecoind
 sudo systemctl status dogecoind
 ```
 
-You can restart/stop the service too. This is useful after changing the configuration.
-
-```sh
-sudo systemctl restart dogecoind
-sudo systemctl stop dogecoind
-```
-
 You can use `dogecoin-cli` to interact with the Dogecoin daemon. Make sure to provide the path to your config file so that it knows your rpcuser/password.
 
 `getinfo` is a useful RPC command to get the current status. You can use it to monitor the current number of connections and the block height. The `"blocks"` will increase as the bootstrap is processed until it catches up with the network. You can check the current network block height at [dogechain.info](https://dogechain.info/).
@@ -158,4 +151,10 @@ dogecoin-cli -conf=/etc/dogecoin/dogecoin.conf getinfo
 
 # Manually addnode
 dogecoin-cli -conf=/etc/dogecoin/dogecoin.conf addnode core0-eu.dogecoin.gg add
+```
+
+If it looks like the block height gets stuck (stops indexing the bootstrap, or stops syncing from the network) you can just restart the dogecoind service.
+
+```sh
+sudo systemctl restart dogecoind
 ```

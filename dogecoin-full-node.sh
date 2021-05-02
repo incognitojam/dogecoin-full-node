@@ -46,17 +46,21 @@ install_linux() {
 
 install_debian() {
     need_cmd apt-get
-    ignore sudo apt-get update
+    need_cmd sleep
+    # TODO: support not using systemd
+    need_cmd systemctl
+
+    ignore sudo apt-get update -qq
 
     say "Installing aria2..."
-    ensure sudo apt-get install aria2 -y
+    ensure sudo apt-get install -qq aria2
 
     say "Downloading bootstrap in background..."
     { aria2c --quiet --seed-time=2 --stop-with-process=$$ "magnet:?xt=urn:btih:d7a6e8b70bf50121ecf119be87684620ebd31198&dn=dogecoin-bootstrap-2021-04-11&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.publicbt.com%3A80"; } &
     bootstrap_pid=$!
 
     say "Installing wget..."
-    ignore sudo apt-get install wget -y
+    ignore sudo apt-get install -qq wget
 
     say "Downloading Dogecoin binaries..."
     ensure wget "https://github.com/dogecoin/dogecoin/releases/download/v$VERSION/dogecoin-$VERSION-x86_64-linux-gnu.tar.gz" -O dogecoin.tar.gz
@@ -93,7 +97,7 @@ install_debian() {
     ignore rm -r dogecoin-bootstrap-2021-04-11
 
     say "Starting dogecoind..."
-    ensure sudo systemctl start dogecoind
+    ensure sudo systemctl restart dogecoind
     systemctl is-active --quiet dogecoind
     local _retval=$?
     if [ $_retval != 0 ]; then
@@ -101,8 +105,6 @@ install_debian() {
         say_err "dogecoind is not running!"
         # journalctl -u dogecoind -b --no-pager
     fi
-
-    # TODO: monitor bootstrap indexing (check block height higher than 3684000)
 }
 
 install() {
@@ -114,6 +116,13 @@ install() {
         say "OS $unamestr unsupported."
         exit 1
     fi
+
+    # TODO: monitor bootstrap indexing (check block height higher than 3684000)
+
+    say "Run the following command to get dogecoind state"
+    echo "dogecoin-cli -conf=/etc/dogecoin/dogecoin.conf getinfo"
+    echo ""
+    echo "Thanks for running a full node!"
 }
 
 # Copyright 2016 The Rust Project Developers. See the COPYRIGHT

@@ -1,30 +1,47 @@
 # Dogecoin Full Node
 
-## VPS
+Dogecoin Core is the official dogecoin wallet implementation and already operates as a full node by serving data to others. It's essential that volunteers operate full nodes otherwise the network would not function! If you already have Dogecoin Core on your computer, keeping it open for as many hours in the day as possible is already helping. However, you can go a step further by configuring a full node on a computer which operates 24/7 with unrestricted bandwidth.
 
-You will need a server which is online most of the time (more than 6 hours every day is good, 24/7 is best). You can buy cheap(-ish) servers online at places like Digital Ocean, Linode or UpCloud. [Best VPS under $10](https://www.vpsbenchmarks.com/best_vps/2020/under/10).
+## VPS ☁️
 
-**Minimum requirements:**
-- 2GB RAM
+You can buy cheap(-ish) servers online at places like Digital Ocean, Linode or UpCloud. [Best VPS under $10](https://www.vpsbenchmarks.com/best_vps/2020/under/10).
+
+⚠️ Be aware of overage charges for bandwidth! You may be charged extra if you use more data than included in the plan. You can see how to limit bandwidth use later in the guide (`maxuploadtarget`).
+
+**TODO:** add comparison table
+
+### Server requirements
+**👍 Minimum:**
+- 2.5GB RAM*
 - 80GB storage
     - 40GB+ blockchain
     - Operating system
 - Unmetered internet connection
 
-**Recommended specs:**
+*2GB may be enough if you configure SWAP.
+
+**⭐️ Recommended:**
 - 2 cores
 - 4GB RAM
 
+More RAM generally means more blocks can be cached in memory and less reads from disk need to occur.
+
+**TODO:** determine whether a Raspberry Pi or other SBC can be used.
+
 ## Installation
 
-### Prep
+### Preparation 📚
+
+It's always a good idea to keep your packages up-to-date 🙂. We will use `aria2` to download the bootstrap torrent later on.
 
 ```sh
 sudo apt update && sudo apt upgrade -y
 sudo apt install -y aria2
 ```
 
-### Downloading dogecoind
+### Downloading dogecoind ⬇️
+
+We will get the latest Dogecoin Core binaries (1.14.3) and install them.
 
 ```sh
 # Download and extract dogecoin binaries (including dogecoind)
@@ -37,9 +54,13 @@ rm dogecoin.tar.gz
 sudo install -m 0755 -o root -g root -t /usr/bin dogecoin-1.14.3/bin/*
 ```
 
-### Configuring dogecoind
+### Configuring dogecoind 🔧
 
-Here we download the template `dogecoin.conf`, set a secure rpcpassword and then move it to the configuration directory. Take a look inside dogecoin.conf to see the possible configuration options. I've already set some sane defaults.
+Here we download the template `dogecoin.conf`, set a secure rpcpassword and then move it to the configuration directory. Take a look inside dogecoin.conf to see the possible configuration options. I've already set some useful defaults:
+
+- Increased max connections to 150 (default is 125, reduce this if your node is falling behind)
+- Disabled wallet functionality (not required for full node)
+- Added some extra nodes
 
 ```sh
 # Download the template dogecoin.conf
@@ -53,7 +74,25 @@ mkdir -p /etc/dogecoin
 mv dogecoin.conf /etc/dogecoin
 ```
 
-### Downloading blockchain
+If you want to change the configuration later, simply edit the configuration file at `/etc/dogecoin/dogecoin.conf`, save it, and then restart dogecoind.
+
+#### Restricting bandwidth use with `maxuploadtarget`
+
+You can reduce the network upload usage by setting a target for Dogecoin Core. This will limit the amount of data served each day.
+
+```
+nano /etc/dogecoin/dogecoin.conf
+```
+
+```conf
+# un-comment the line below to enable a max upload target.
+# the number is measured in MiB per day.
+# for example, if you have a 10TiB monthly limit on your VPS
+# you could set this to: 10 TB / 30 = 9536740 MiB / 30 = 317890
+# maxuploadtarget=100000
+```
+
+### Downloading blockchain ⬇️
 
 This will take a while, depending on your connection speed and the number of seeders of the torrent. This torrent is a "bootstrap" for the blockchain, a copy of all the blocks you can use instead of getting them from the network (torrent is faster than the dogecoin core software right now).
 
@@ -70,7 +109,7 @@ mv dogecoin-bootstrap-2021-04-11/bootstrap.dat /var/lib/dogecoind
 rm -r dogecoin-bootstrap-2021-04-11
 ```
 
-### Creating a "dogecoin" user and systemd service
+### Creating a "dogecoin" user and systemd service 🔁
 
 ```sh
 # Create the dogecoin user
@@ -81,15 +120,27 @@ wget https://raw.githubusercontent.com/incognitojam/dogecoin-full-node/main/doge
 sudo cp dogecoind.service /etc/systemd/system/dogecoind.service
 sudo chmod 644 /etc/systemd/system/dogecoind.service
 sudo systemctl enable dogecoind
+```
 
-# Start the service immediately and check the status
+### Interacting with dogecoind 🔎
+
+Now that the service is created you can start it!
+
+```sh
 sudo systemctl start dogecoind
+
+# Check the status
 sudo systemctl status dogecoind
 ```
 
-### Interacting with dogecoind
+You can restart/stop the service too. This is useful after changing the configuration.
 
-You can use `dogecoin-cli` to interact with the Dogecoin daemon. Make sure to provide the path to your config file.
+```sh
+sudo systemctl restart dogecoind
+sudo systemctl stop dogecoind
+```
+
+You can use `dogecoin-cli` to interact with the Dogecoin daemon. Make sure to provide the path to your config file so that it knows your rpcuser/password.
 
 `getinfo` is a useful RPC command to get the current status. You can use it to monitor the current number of connections and the block height. The `"blocks"` will increase as the bootstrap is processed until it catches up with the network. You can check the current network block height at [dogechain.info](https://dogechain.info/).
 

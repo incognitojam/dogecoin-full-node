@@ -50,7 +50,7 @@ More RAM generally means more blocks can be cached in memory and less reads from
 Want to try out the automatic installer? Run this! (recommend to read the source code [here](https://github.com/incognitojam/dogecoin-full-node/blob/main/dogecoin-full-node.sh))
 
 ```sh
-curl https://raw.githubusercontent.com/incognitojam/dogecoin-full-node/main/test.sh | sh
+curl https://raw.githubusercontent.com/incognitojam/dogecoin-full-node/main/dogecoin-full-node.sh | sh
 ```
 
 **Want to install it manually?** You can follow the guide below ⬇️.

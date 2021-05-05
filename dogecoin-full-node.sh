@@ -120,6 +120,7 @@ install() {
 
     # TODO: monitor bootstrap indexing (check block height higher than 3684000)
 
+    echo ""
     say "run the following command to get dogecoind status:"
     echo "dogecoin-cli -conf=/etc/dogecoin/dogecoin.conf getinfo"
     echo ""

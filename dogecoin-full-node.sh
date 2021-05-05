@@ -84,7 +84,7 @@ install_debian() {
 
     say "Creating systemd service..."
     ensure wget https://raw.githubusercontent.com/incognitojam/dogecoin-full-node/main/dogecoind.service
-    ensure sudo cp dogecoind.service /etc/systemd/system/dogecoind.service
+    ensure sudo mv dogecoind.service /etc/systemd/system/dogecoind.service
     ensure sudo chmod 644 /etc/systemd/system/dogecoind.service
     ensure sudo systemctl enable dogecoind
 

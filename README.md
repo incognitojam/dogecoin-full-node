@@ -146,6 +146,7 @@ rm -r dogecoin-bootstrap-2021-04-11
 ```sh
 # Create the dogecoin user
 sudo useradd -r -s /bin/false dogecoin
+sudo chown -R dogecoin:dogecoin /var/lib/dogecoind
 
 # Add the systemd service and enable it to start at boot
 wget https://raw.githubusercontent.com/incognitojam/dogecoin-full-node/main/dogecoind.service

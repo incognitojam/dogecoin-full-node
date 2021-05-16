@@ -19,7 +19,7 @@ Dogecoin Core is the official dogecoin wallet implementation and already operate
 
 ## VPS ☁️
 
-You can buy cheap(-ish) servers online at places like Digital Ocean, Linode or UpCloud. [Best VPS under $10](https://www.vpsbenchmarks.com/best_vps/2020/under/10).
+You can buy cheap(-ish) servers online at places like [Digital Ocean](https://m.do.co/c/a2893b77f98d), [Linode](https://www.linode.com/?r=bf8b9c6e1207e59de6c61d25aedf64f2592ab8b4) or [UpCloud](https://upcloud.com/signup/?promo=6J4N76). [Best VPS under $10](https://www.vpsbenchmarks.com/best_vps/2020/under/10).
 
 ⚠️ Be aware of overage charges for bandwidth! You may be charged extra if you use more data than included in the plan. You can see how to limit bandwidth use later in the guide (`maxuploadtarget`).
 

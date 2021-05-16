@@ -28,8 +28,8 @@ You can buy cheap(-ish) servers online at places like [Digital Ocean](https://m.
 ### Server requirements
 **👍 Minimum:**
 - 2.5GB RAM*
-- 80GB storage
-    - 40GB+ blockchain
+- 100GB storage
+    - 50GB+ blockchain + 40GB+ bootstrap (bootstrap can be deleted afterwards but you need to have both files at the same time)
     - Operating system
 - Unmetered internet connection
 

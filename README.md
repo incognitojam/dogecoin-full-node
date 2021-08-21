@@ -2,6 +2,14 @@
 
 Dogecoin Core is the official dogecoin wallet implementation and already operates as a full node by serving data to others. It's essential that volunteers operate full nodes otherwise the network would not function! If you already have Dogecoin Core on your computer, keeping it open for as many hours in the day as possible is already helping. However, you can go a step further by configuring a full node on a computer which operates 24/7 with unrestricted bandwidth.
 
+---
+
+## ⚠️ Attention!
+
+**Update to Dogecoin 1.14.4 for the latest performance improvements and security.** You can use the automated `dogecoin-update-node.sh` script to do this.
+
+---
+
 **Table of Contents**
 
 * [VPS ☁️](#vps-%EF%B8%8F)

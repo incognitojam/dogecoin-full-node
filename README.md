@@ -76,16 +76,16 @@ sudo apt install -y aria2
 
 ### Downloading dogecoind ⬇️
 
-We will get the latest Dogecoin Core binaries (1.14.3) and install them.
+We will get the latest Dogecoin Core binaries (1.14.4) and install them.
 
 ```sh
 # Download and extract dogecoin binaries (including dogecoind)
-wget "https://github.com/dogecoin/dogecoin/releases/download/v1.14.3/dogecoin-1.14.3-x86_64-linux-gnu.tar.gz" -O dogecoin.tar.gz
+wget "https://github.com/dogecoin/dogecoin/releases/download/v1.14.4/dogecoin-1.14.4-x86_64-linux-gnu.tar.gz" -O dogecoin.tar.gz
 tar -zxvvf dogecoin.tar.gz
 rm dogecoin.tar.gz
 
 # Installing binaries
-sudo install -m 0755 -o root -g root -t /usr/bin dogecoin-1.14.3/bin/*
+sudo install -m 0755 -o root -g root -t /usr/bin dogecoin-1.14.4/bin/*
 ```
 
 ### Configuring dogecoind 🔧
